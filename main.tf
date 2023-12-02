@@ -7,7 +7,7 @@ terraform {
   }
 }
 provider "aws" {
-    region = "us-east-1"  
+    region = "us-west-1"  
 }
 
 resource "aws_instance" "foo" {
