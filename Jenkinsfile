@@ -16,6 +16,15 @@ node {
         sh "${terraformPath} output prod_server_ip > prod_ip.txt"
         }
     }
-    
+     
+    stage('updating ansible file'){
+        def testIp = readFile('test_ip.txt').trim().replaceAll('"', '')
+        def prodIp = readFile('prod_ip.txt').trim().replaceAll('"', '')
+        def ansibleInventoryPath = '/etc/ansible/hosts'
+        sh "echo '[test-server]' > ${ansibleInventoryPath}"
+        sh "echo '${testIp}' >> ${ansibleInventoryPath}"
+        sh "echo '[prod-server]' >> ${ansibleInventoryPath}"
+        sh "echo '${prodIp}' >> ${ansibleInventoryPath}"
+    }
 
 }
