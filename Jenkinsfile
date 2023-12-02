@@ -14,6 +14,7 @@ node {
         sh "${terraformPath} apply -auto-approve"
         sh "${terraformPath} output test_server_ip > test_ip.txt"
         sh "${terraformPath} output prod_server_ip > prod_ip.txt"
+         # sh "${terraformPath} destroy"    
         }
     }
      
